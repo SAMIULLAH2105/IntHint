@@ -11,17 +11,22 @@ import ViewOwnCollection from "./Pages/ViewOwnCollection";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/collection" element={<Collection />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/register" element={<Signup />} />
-          <Route path="/notfound" element={<NotFound />} />
-          <Route path="/user/addCollection" element={<UploadCollection />} />
-          <Route path="/user/viewCollection" element={<ViewOwnCollection />} />
-        </Routes>
-      </Router>
+      <StoreProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/collection" element={<Collection />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/register" element={<Signup />} />
+            <Route path="/notfound" element={<NotFound />} />
+            <Route path="/user/addCollection" element={<UploadCollection />} />
+            <Route
+              path="/user/viewCollection"
+              element={<ViewOwnCollection />}
+            />
+          </Routes>
+        </Router>
+      </StoreProvider>
     </>
   );
 }
