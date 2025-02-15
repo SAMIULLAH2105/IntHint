@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup";
 import NotFound from "./Pages/NotFound";
 import UploadCollection from "./Pages/UploadCollection";
 import ViewOwnCollection from "./Pages/ViewOwnCollection";
+import { StoreProvider } from "./Store/Store";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/collection" element={<Collection />} />
+            <Route path="/collection/:category" element={<Collection />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Signup />} />
             <Route path="/notfound" element={<NotFound />} />

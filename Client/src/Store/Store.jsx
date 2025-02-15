@@ -3,7 +3,7 @@ import { useReducer } from "react"
 
 const intialState = {
   isAuth: false,
-  user: null,
+  // user: null,
 }
 
 const reducer = (state, action) => {
