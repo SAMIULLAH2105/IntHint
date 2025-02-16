@@ -1,37 +1,14 @@
-import { createContext } from "react"
-import { useReducer } from "react"
+import { createContext, useState } from "react";
 
-const intialState = {
-  isAuth: false,
-  // user: null,
-}
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return {
-        ...state,
-        isAuth: true,
-      }
-    case "LOGOUT":
-      return {
-        ...state,
-        isAuth: false,
-      }
-    default:
-      return state
-  }
-}
-
-export const storeContext = createContext()
-
+export const storeContext = createContext();
 
 export const StoreProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, intialState)
+  const [isAuth, setIsAuth] = useState(false); // Tracks authentication state
+  const [user, setUser] = useState(null); // Stores user details
 
   return (
-    <storeContext.Provider value={{ state, dispatch }}>
+    <storeContext.Provider value={{ isAuth, setIsAuth, user, setUser }}>
       {children}
     </storeContext.Provider>
-  )
-}
+  );
+};

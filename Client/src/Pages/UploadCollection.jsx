@@ -1,170 +1,246 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button"; // Ensure shadcn/ui is installed
+import Navbar from "@/Components/LandingPage/Navbar";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const QuestionForm = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [uploadType, setUploadType] = useState(""); // Private or Public
-  const [questions, setQuestions] = useState([""]);
-  const [fadeIn, setFadeIn] = useState(false);
-  const [error, setError] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [company, setCompany] = useState("");
+    const [visibility, setVisibility] = useState("private");
+    const [questions, setQuestions] = useState([{ text: "", answers: [""] }]);
+    const [fadeIn, setFadeIn] = useState(false);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    setFadeIn(true); // Trigger animation on mount
-  }, []);
+    useEffect(() => {
+        setFadeIn(true);
+    }, []);
 
-  const handleCompanyChange = (e) => {
-    setCompanyName(e.target.value);
-  };
+    const handleTitleChange = (e) => setTitle(e.target.value);
+    const handleDescriptionChange = (e) => setDescription(e.target.value);
+    const handleCompanyChange = (e) => setCompany(e.target.value);
+    const handleVisibilityChange = (e) => setVisibility(e.target.value);
 
-  const handleCompanyTypeChange = (e) => {
-    setUploadType(e.target.value);
-  };
+    const handleQuestionChange = (index, value) => {
+        const newQuestions = [...questions];
+        newQuestions[index].text = value;
+        setQuestions(newQuestions);
+    };
 
-  const handleQuestionChange = (index, value) => {
-    const newQuestions = [...questions];
-    newQuestions[index] = value;
-    setQuestions(newQuestions);
-  };
+    const handleAnswerChange = (questionIndex, answerIndex, value) => {
+        const newQuestions = [...questions];
+        newQuestions[questionIndex].answers[answerIndex] = value;
+        setQuestions(newQuestions);
+    };
 
-  const addQuestionField = () => {
-    setQuestions([...questions, ""]);
-  };
+    const addQuestionField = () => {
+        setQuestions([...questions, { text: "", answers: [] }]);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const addAnswerField = (questionIndex) => {
+        const newQuestions = [...questions];
+        newQuestions[questionIndex].answers.push("");
+        setQuestions(newQuestions);
+    };
 
-    if (!companyName.trim()) {
-      setError("Company name is required.");
-      return;
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    if (questions.some((q) => q.trim() === "")) {
-      setError("All questions must be filled.");
-      return;
-    }
+        if (!title.trim()) {
+            setError("Title is required.");
+            return;
+        }
+        if (!description.trim()) {
+            setError("Description is required.");
+            return;
+        }
+        if (!company.trim()) {
+            setError("Company name is required.");
+            return;
+        }
+        if (questions.some((q) => q.text.trim() === "")) {
+            setError("All questions must be filled.");
+            return;
+        }
+        if (questions.some((q) => q.answers.some((a) => a.trim() === ""))) {
+            setError("All answers must be filled.");
+            return;
+        }
 
-    setError(""); // Clear errors if all inputs are valid
+        setError("");
 
-    console.log({
-      companyName,
-      questions,
-    });
-  };
+        try {
+                
+          console.log({ title, description, company, visibility, questions })
+            const response = await axios.post(
+                "http://localhost:5000/api/collections/createCollection",
+                { title, description, company, visibility, questions },
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            if (response) {
+                navigate("/");
+            }
+        } catch (error) {
+            console.error(
+                "Error creating collection:",
+                error.response?.data || error.message
+            );
+        }
+    };
 
-  return (
-    <div className="min-h-screen bg-gray-800 flex flex-col items-center justify-center">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-black p-4 z-50 shadow-lg">
-        <div className="container mx-auto flex justify-between items-center text-white">
-          <a
-            href="/"
-            className="text-xl font-bold hover:text-blue-400 transition duration-300"
-          >
-            My Shop
-          </a>
-
-          <div className="space-x-4">
-            <a href="#" className="hover:text-blue-400 transition duration-300">
-              Home
-            </a>
-            <a href="#" className="hover:text-blue-400 transition duration-300">
-              Products
-            </a>
-            <a href="#" className="hover:text-blue-400 transition duration-300">
-              Contact
-            </a>
-          </div>
-          <Button
-            className="bg-black hover:bg-gray-800 transition duration-300"
-            onClick={() => (window.location.href = "/user/viewcollection")}
-          >
-            My Questions
-          </Button>
-        </div>
-      </nav>
-
-      {/* Form Section */}
-      <div
-        className={`mt-20 w-full max-w-2xl p-6 bg-white shadow-lg rounded-lg transition-opacity duration-700 ${
-          fadeIn ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <h2 className="text-2xl font-bold text-center mb-4">
-          Create a Question Form
-        </h2>
-
-        {error && (
-          <p className="text-red-500 text-center font-semibold mb-3">{error}</p>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Company Name Input */}
-          <div>
-            <label className="block text-lg font-semibold mb-2">
-              Company Name:
-            </label>
-            <input
-              type="text"
-              value={companyName}
-              onChange={handleCompanyChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter company name"
-              required
-            />
-          </div>
-
-          {/* Company Type Dropdown */}
-          <div>
-            <label className="block text-lg font-semibold mb-2">
-              Upload Type:
-            </label>
-            <select
-              value={uploadType}
-              onChange={handleCompanyTypeChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              required
-            >
-              <option value="">Select Type</option>
-              <option value="Private">Private</option>
-              <option value="Public">Public</option>
-            </select>
-          </div>
-
-          {/* Dynamic Question Inputs */}
-          {questions.map((question, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <input
-                type="text"
-                value={question}
-                onChange={(e) => handleQuestionChange(index, e.target.value)}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder={`Enter question ${index + 1}`}
-                required
-              />
-              {/* Add More Button */}
-              {index === questions.length - 1 && (
-                <button
-                  type="button"
-                  onClick={addQuestionField}
-                  className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+    return (
+        <>
+            <Navbar />
+            <div className="min-h-screen bg-gray-800 flex flex-col items-center justify-center">
+                <div
+                    className={`mt-20 w-full max-w-2xl p-6 bg-white shadow-lg rounded-lg transition-opacity duration-700 ${
+                        fadeIn ? "opacity-100" : "opacity-0"
+                    }`}
                 >
-                  +
-                </button>
-              )}
-            </div>
-          ))}
+                    <h2 className="text-2xl font-bold text-center mb-4">
+                        Create a new Collection
+                    </h2>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+                    {error && (
+                        <p className="text-red-500 text-center font-semibold mb-3">
+                            {error}
+                        </p>
+                    )}
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-lg font-semibold mb-2">
+                                Title:
+                            </label>
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={handleTitleChange}
+                                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter title"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-lg font-semibold mb-2">
+                                Description:
+                            </label>
+                            <input
+                                type="text"
+                                value={description}
+                                onChange={handleDescriptionChange}
+                                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter description"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-lg font-semibold mb-2">
+                                Company Name:
+                            </label>
+                            <input
+                                type="text"
+                                value={company}
+                                onChange={handleCompanyChange}
+                                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter company name"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-lg font-semibold mb-2">
+                                Visibility:
+                            </label>
+                            <select
+                                value={visibility}
+                                onChange={handleVisibilityChange}
+                                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                required
+                            >
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                            </select>
+                        </div>
+
+                        {questions.map((question, qIndex) => (
+                            <div key={qIndex} className="space-y-2">
+                                <input
+                                    type="text"
+                                    value={question.text}
+                                    onChange={(e) =>
+                                        handleQuestionChange(
+                                            qIndex,
+                                            e.target.value
+                                        )
+                                    }
+                                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                    placeholder={`Enter question ${qIndex + 1}`}
+                                    required
+                                />
+
+                                {question.answers.map((answer, aIndex) => (
+                                    <div
+                                        key={aIndex}
+                                        className="flex space-x-2"
+                                    >
+                                        <input
+                                            type="text"
+                                            value={answer}
+                                            onChange={(e) =>
+                                                handleAnswerChange(
+                                                    qIndex,
+                                                    aIndex,
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500"
+                                            placeholder={`Enter answer ${
+                                                aIndex + 1
+                                            }`}
+                                            required
+                                        />
+                                    </div>
+                                ))}
+
+                                <button
+                                    type="button"
+                                    onClick={() => addAnswerField(qIndex)}
+                                    className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
+                                >
+                                    + Add Answer
+                                </button>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            onClick={addQuestionField}
+                            className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 w-full"
+                        >
+                            + Add Question
+                        </button>
+
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
+                        >
+                            Create Collection
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default QuestionForm;

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -14,8 +15,26 @@ import { storeContext } from "@/Store/Store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = () => {
-    const { state } = useContext(storeContext);
-    const { isAuth } = state;
+    const { isAuth, setIsAuth } = useContext(storeContext);
+
+
+    const handleLogout = async () => {
+        try {
+          const response = await axios.post("http://localhost:5000/api/auth/logOut", {}, { withCredentials: true });
+      
+          console.log("Logout successful:", response.data);
+            setIsAuth(false)
+  
+          alert("You have been logged out successfully.");
+          window.location.href = "/"; 
+        } catch (error) {
+          console.error("Logout failed:", error.response?.data?.message || error.message);
+          alert(error.response?.data?.message || "Logout failed. Please try again.");
+        }
+      };
+
+      
+
 
     const categories = [
         "Google",
@@ -39,31 +58,19 @@ const Navbar = () => {
         <nav className="w-full bg-white shadow-md p-4">
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/" className="text-xl font-bold text-gray-900">
-                    IntHint
+                InterviewAce
                 </Link>
                 <NavigationMenu>
                     <NavigationMenuList className="flex gap-4">
                         <NavigationMenuItem>
-                            <NavigationMenuTrigger>
-                                Categories
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent className="min-w-[200px] bg-gray-100 p-4 rounded-lg shadow-lg">
-                                <div className="flex flex-col gap-2">
-                                    {categories.map((company, index) => (
-                                        <NavigationMenuLink asChild key={index}>
-                                            <Link
-                                                to="/web-development"
-                                                className="hover:text-blue-600"
-                                            >
-                                                {company}
-                                            </Link>
-                                        </NavigationMenuLink>
-                                    ))}
-                                </div>
-                            </NavigationMenuContent>
+                            <Link to="/">Home</Link>
+                                
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link to="/collection">Collections</Link>
                         </NavigationMenuItem>
 
-                        {isAuth ? (
+                        {!isAuth ? (
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>
                                     Profile
@@ -72,7 +79,7 @@ const Navbar = () => {
                                     <div className="flex flex-col gap-2">
                                         <NavigationMenuLink asChild>
                                             <Link
-                                                to="/login"
+                                                to="/auth/login"
                                                 className="hover:text-blue-600"
                                             >
                                                 Login
@@ -80,7 +87,7 @@ const Navbar = () => {
                                         </NavigationMenuLink>
                                         <NavigationMenuLink asChild>
                                             <Link
-                                                to="/sign-in"
+                                                to="/auth/register"
                                                 className="hover:text-blue-600"
                                             >
                                                 Sign In
@@ -110,7 +117,7 @@ const Navbar = () => {
                                         </NavigationMenuLink>
                                         <NavigationMenuLink asChild>
                                             <Link
-                                                to="/login"
+                                                to="/user/viewCollection"
                                                 className="hover:text-blue-600"
                                             >
                                                 View Collection
@@ -118,8 +125,8 @@ const Navbar = () => {
                                         </NavigationMenuLink>
                                         <NavigationMenuLink asChild>
                                             <Link
-                                                to="/login"
                                                 className="hover:text-blue-600"
+                                                onClick={handleLogout}
                                             >
                                                 Logout
                                             </Link>

@@ -17,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/collection/:category" element={<Collection />} />
+            <Route path="/collection" element={<Collection />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Signup />} />
             <Route path="/notfound" element={<NotFound />} />
