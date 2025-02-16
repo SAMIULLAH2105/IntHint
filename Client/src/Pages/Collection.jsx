@@ -45,6 +45,8 @@ import {
     HoverCardTrigger,
 } from "@/components/ui/hover-card";
 
+import axios from "axios";
+
 const Collection = () => {
     const navigate = useNavigate();
     const [collections, setCollections] = useState([]);
@@ -55,110 +57,110 @@ const Collection = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        // const fetchCollections = async () => {
-        //     try {
-        //         const response = await axios.get(
-        //             `http://localhost:5000/api/collections/publicByCompany/${category}`
-        //         );
-        //         setCollections(response.data.data);
-                // setFilteredCollections(response.data.data);
-        //     } catch (err) {
-        //         console.error("Error fetching collections:", err);
-        //         setError(
-        //             err.response?.data?.message || "Failed to fetch collections"
-        //         );
-        //     }
-                setCollections([
-                    {
-                        _id: "65c3f4f8a5d9e3b8b1a7d2c1",
-                        title: "Amazon System Design",
-                        description:
-                            "A collection of system design interview questions for Amazon.",
-                        company: "Amazon",
-                        ownedBy: {
-                            _id: "65c1d3b5a2e4f6d8c9b2e4f6",
-                            userName: "John Doe",
-                        },
-                        visibility: "public",
-                        questions: [
-                            {
-                                text: "How would you design a URL shortening service like Bitly?",
-                                answers: [
-                                    {
-                                        text: "Use a hash function to generate short URLs.",
-                                    },
-                                    {
-                                        text: "Store mappings in a database with expiration timestamps.",
-                                    },
-                                ],
-                            },
-                            {
-                                text: "How does a load balancer work?",
-                                answers: [
-                                    {
-                                        text: "It distributes incoming traffic across multiple servers.",
-                                    },
-                                ],
-                            },
-                            {
-                                text: "What are the benefits of microservices?",
-                                answers: [
-                                    { text: "Scalability and flexibility." },
-                                    { text: "Improved fault isolation." },
-                                ],
-                            },
-                        ],
-                        createdAt: "2025-02-16T12:34:56.789Z",
-                        updatedAt: "2025-02-16T12:34:56.789Z",
-                    },
-                ]);
-                setFilteredCollections([
-                    {
-                        _id: "65c3f4f8a5d9e3b8b1a7d2c1",
-                        title: "Amazon System Design",
-                        description:
-                            "A collection of system design interview questions for Amazon.",
-                        company: "Amazon",
-                        ownedBy: {
-                            _id: "65c1d3b5a2e4f6d8c9b2e4f6",
-                            userName: "John Doe",
-                        },
-                        visibility: "public",
-                        questions: [
-                            {
-                                text: "How would you design a URL shortening service like Bitly?",
-                                answers: [
-                                    {
-                                        text: "Use a hash function to generate short URLs.",
-                                    },
-                                    {
-                                        text: "Store mappings in a database with expiration timestamps.",
-                                    },
-                                ],
-                            },
-                            {
-                                text: "How does a load balancer work?",
-                                answers: [
-                                    {
-                                        text: "It distributes incoming traffic across multiple servers.",
-                                    },
-                                ],
-                            },
-                            {
-                                text: "What are the benefits of microservices?",
-                                answers: [
-                                    { text: "Scalability and flexibility." },
-                                    { text: "Improved fault isolation." },
-                                ],
-                            },
-                        ],
-                        createdAt: "2025-02-16T12:34:56.789Z",
-                        updatedAt: "2025-02-16T12:34:56.789Z",
-                    },
-                ]);
-        // };
+        const fetchCollections = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:5000/api/collections/publicByCompany/${category}`
+                );
+                setCollections(response.data.data);
+                setFilteredCollections(response.data.data);
+            } catch (err) {
+                console.error("Error fetching collections:", err);
+                // setError(
+                //     err.response?.data?.message || "Failed to fetch collections"
+                // );
+            }
+                // setCollections([
+                //     {
+                //         _id: "65c3f4f8a5d9e3b8b1a7d2c1",
+                //         title: "Amazon System Design",
+                //         description:
+                //             "A collection of system design interview questions for Amazon.",
+                //         company: "Amazon",
+                //         ownedBy: {
+                //             _id: "65c1d3b5a2e4f6d8c9b2e4f6",
+                //             userName: "John Doe",
+                //         },
+                //         visibility: "public",
+                //         questions: [
+                //             {
+                //                 text: "How would you design a URL shortening service like Bitly?",
+                //                 answers: [
+                //                     {
+                //                         text: "Use a hash function to generate short URLs.",
+                //                     },
+                //                     {
+                //                         text: "Store mappings in a database with expiration timestamps.",
+                //                     },
+                //                 ],
+                //             },
+                //             {
+                //                 text: "How does a load balancer work?",
+                //                 answers: [
+                //                     {
+                //                         text: "It distributes incoming traffic across multiple servers.",
+                //                     },
+                //                 ],
+                //             },
+                //             {
+                //                 text: "What are the benefits of microservices?",
+                //                 answers: [
+                //                     { text: "Scalability and flexibility." },
+                //                     { text: "Improved fault isolation." },
+                //                 ],
+                //             },
+                //         ],
+                //         createdAt: "2025-02-16T12:34:56.789Z",
+                //         updatedAt: "2025-02-16T12:34:56.789Z",
+                //     },
+                // ]);
+                // setFilteredCollections([
+                //     {
+                //         _id: "65c3f4f8a5d9e3b8b1a7d2c1",
+                //         title: "Amazon System Design",
+                //         description:
+                //             "A collection of system design interview questions for Amazon.",
+                //         company: "Amazon",
+                //         ownedBy: {
+                //             _id: "65c1d3b5a2e4f6d8c9b2e4f6",
+                //             userName: "John Doe",
+                //         },
+                //         visibility: "public",
+                //         questions: [
+                //             {
+                //                 text: "How would you design a URL shortening service like Bitly?",
+                //                 answers: [
+                //                     {
+                //                         text: "Use a hash function to generate short URLs.",
+                //                     },
+                //                     {
+                //                         text: "Store mappings in a database with expiration timestamps.",
+                //                     },
+                //                 ],
+                //             },
+                //             {
+                //                 text: "How does a load balancer work?",
+                //                 answers: [
+                //                     {
+                //                         text: "It distributes incoming traffic across multiple servers.",
+                //                     },
+                //                 ],
+                //             },
+                //             {
+                //                 text: "What are the benefits of microservices?",
+                //                 answers: [
+                //                     { text: "Scalability and flexibility." },
+                //                     { text: "Improved fault isolation." },
+                //                 ],
+                //             },
+                //         ],
+                //         createdAt: "2025-02-16T12:34:56.789Z",
+                //         updatedAt: "2025-02-16T12:34:56.789Z",
+                //     },
+                // ]);
+        };
 
-        // fetchCollections();
+        fetchCollections();
     }, [category]);
 
     function handleSearch(params) {
