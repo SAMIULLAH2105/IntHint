@@ -8,6 +8,7 @@ import NotFound from "./Pages/NotFound";
 import UploadCollection from "./Pages/UploadCollection";
 import ViewOwnCollection from "./Pages/ViewOwnCollection";
 import { StoreProvider } from "./Store/Store";
+import AllCollection from "./Pages/AllCollection";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/collection/:category" element={<Collection />} />
-            <Route path="/collection" element={<Collection />} />
+            <Route path="/collection" element={<AllCollection />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Signup />} />
             <Route path="/notfound" element={<NotFound />} />

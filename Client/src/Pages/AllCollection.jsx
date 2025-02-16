@@ -47,7 +47,7 @@ import {
 
 import axios from "axios";
 
-const Collection = () => {
+const AllCollection = () => {
     const navigate = useNavigate();
     const [collections, setCollections] = useState([]);
     const [filteredCollections, setFilteredCollections] = useState([]);
@@ -60,7 +60,7 @@ const Collection = () => {
         const fetchCollections = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/api/collections/publicByCompany/${category}`
+                    `http://localhost:5000/api/collections/public`
                 );
                 console.log(response, category)
                 setCollections(response.data.data);
@@ -247,9 +247,9 @@ const Collection = () => {
                                 <DropdownMenuRadioItem value="user">
                                     By User
                                 </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="time">
+                                {/* <DropdownMenuRadioItem value="time">
                                     By Time
-                                </DropdownMenuRadioItem>
+                                </DropdownMenuRadioItem> */}
                             </DropdownMenuRadioGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -294,7 +294,7 @@ const Collection = () => {
                                     <div>{collection.company}</div>
                                     <Separator orientation="vertical" />
                                     <div className="flex gap-3">
-                                        <HoverCard>
+                                        {/* <HoverCard>
                                             <HoverCardTrigger asChild>
                                                 <Button
                                                     variant="link"
@@ -330,7 +330,7 @@ const Collection = () => {
                                                     </div>
                                                 </div>
                                             </HoverCardContent>
-                                        </HoverCard>
+                                        </HoverCard> */}
                                     </div>
                                 </div>
                             </div>
@@ -400,4 +400,4 @@ const Collection = () => {
     );
 };
 
-export default Collection;
+export default AllCollection;

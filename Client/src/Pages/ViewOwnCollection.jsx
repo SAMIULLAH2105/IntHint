@@ -35,70 +35,72 @@ import {
     HoverCardTrigger,
 } from "@/components/ui/hover-card";
 
-const Collection = () => {
+import axios from "axios";
+
+const ViewOwnCollection = () => {
     // const { category } = useParams();
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
         async function getCollections() {
-            // try {
-            //     const response = await axios.get(
-            //         "http://localhost:5000/api/collections/getByUserId",
-            //         {
-            //             withCredentials: true,
-            //         }
-            //     );
+            try {
+                const response = await axios.get(
+                    "http://localhost:5000/api/collections/getByUserId",
+                    {
+                        withCredentials: true,
+                    }
+                );
 
-            //     setCollections(response.data.data);
-            // } catch (error) {
-            //     console.error(
-            //         "Error fetching collections:",
-            //         error.response?.data || error.message
-            //     );
-            // }
+                setCollections(response.data.data);
+            } catch (error) {
+                console.error(
+                    "Error fetching collections:",
+                    error.response?.data || error.message
+                );
+            }
 
-            setCollections([
-                {
-                    _id: "65b8c2a9f9d123456789abcd",
-                    title: "React Interview Questions",
-                    description: "Common React questions for interviews.",
-                    company: "Meta",
-                    ownedBy: "65b123abc456def789012345",
-                    visibility: "private",
-                    questions: [
-                        {
-                            text: "What are React hooks?",
-                            answers: [
-                                "Hooks are functions that let you use state and lifecycle features.",
-                            ],
-                        },
-                        {
-                            text: "What is useEffect used for?",
-                            answers: [
-                                "Handling side effects in function components.",
-                            ],
-                        },
-                    ],
-                    createdAt: "2025-02-16T10:30:00.123Z",
-                    updatedAt: "2025-02-16T10:35:00.456Z",
-                },
-                {
-                    _id: "65b8c2b5f9d123456789efgh",
-                    title: "Data Structures Questions",
-                    description: "Questions on algorithms and data structures.",
-                    company: "Google",
-                    ownedBy: "65b123abc456def789012345",
-                    visibility: "public",
-                    questions: [
-                        {
-                            text: "Explain the difference between a stack and a queue.",
-                            answers: ["Stack: LIFO, Queue: FIFO"],
-                        },
-                    ],
-                    createdAt: "2025-02-15T14:20:00.789Z",
-                    updatedAt: "2025-02-16T09:00:00.321Z",
-                },
-            ]);
+            // setCollections([
+            //     {
+            //         _id: "65b8c2a9f9d123456789abcd",
+            //         title: "React Interview Questions",
+            //         description: "Common React questions for interviews.",
+            //         company: "Meta",
+            //         ownedBy: "65b123abc456def789012345",
+            //         visibility: "private",
+            //         questions: [
+            //             {
+            //                 text: "What are React hooks?",
+            //                 answers: [
+            //                     "Hooks are functions that let you use state and lifecycle features.",
+            //                 ],
+            //             },
+            //             {
+            //                 text: "What is useEffect used for?",
+            //                 answers: [
+            //                     "Handling side effects in function components.",
+            //                 ],
+            //             },
+            //         ],
+            //         createdAt: "2025-02-16T10:30:00.123Z",
+            //         updatedAt: "2025-02-16T10:35:00.456Z",
+            //     },
+            //     {
+            //         _id: "65b8c2b5f9d123456789efgh",
+            //         title: "Data Structures Questions",
+            //         description: "Questions on algorithms and data structures.",
+            //         company: "Google",
+            //         ownedBy: "65b123abc456def789012345",
+            //         visibility: "public",
+            //         questions: [
+            //             {
+            //                 text: "Explain the difference between a stack and a queue.",
+            //                 answers: ["Stack: LIFO, Queue: FIFO"],
+            //             },
+            //         ],
+            //         createdAt: "2025-02-15T14:20:00.789Z",
+            //         updatedAt: "2025-02-16T09:00:00.321Z",
+            //     },
+            // ]);
         }
         getCollections();
     }, []);
@@ -286,4 +288,4 @@ const Collection = () => {
     );
 };
 
-export default Collection;
+export default ViewOwnCollection;
