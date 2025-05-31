@@ -1,40 +1,87 @@
-**TechPrepHub**
+# 🚀 TechPrepHub
 
-**Overview**
+### Your Ultimate Platform for Technical Interview Prep
 
-This platform allows users to upload, browse, and manage collections of technical interview questions categorized by company. Users can choose to keep their collections private or make them publicly accessible for others.
+---
 
-Features
+## ✨ Overview
 
-Upload Collections: Users can upload their own interview question collections.
+**TechPrepHub** empowers you to upload, explore, and manage collections of technical interview questions — all organized by company. Whether you prefer to keep your collections private or share them with the world, TechPrepHub makes interview prep smarter, easier, and more focused.
 
-Browse Collections: View and filter collections based on company.
+---
 
-Privacy Control: Collections can be private (visible only to the uploader) or public (accessible to everyone).
+## 🌟 Key Features
 
-Company-Based Filtering: Easily find questions from specific companies like Google, Facebook, etc.
+- **📤 Upload Your Collections**  
+  Seamlessly add your own curated interview question sets, complete with titles, descriptions, company names, and visibility controls.
 
-Download Collections: Users must log in or register to download questions.
+- **🔍 Browse & Filter**  
+  Discover collections by company or search with keywords to zero in on exactly what you need.
 
-**Tech Stack**
+- **🔒 Privacy Settings**  
+  Decide whether your collections stay private or become accessible to the entire community.
 
-Frontend: React (Vite)
+- **🏢 Company-Based Filtering**  
+  Quickly filter questions by top tech companies like Google, Facebook, Amazon, and more.
 
-Backend: Node.js, Express
+- **⬇️ Download Collections**  
+  Registered users can conveniently download collections for offline review.
 
-Database: MongoDB (Mongoose)
+---
 
-Authentication: JSON Web Token (JWT)
+## 🛠️ Tech Stack
 
-Styling: Tailwind CSS
+| Layer         | Technology              |
+| ------------- | ----------------------- |
+| Frontend      | React (Vite)            |
+| Backend       | Node.js, Express        |
+| Database      | MongoDB (Mongoose ODM)  |
+| Authentication| JSON Web Tokens (JWT)   |
+| Styling       | Tailwind CSS            |
 
-**Uploading a Collection**
+---
 
-Login/Register to your account.
+## ⚙️ Getting Started
 
-Navigate to the Upload Collection page.
+### Prerequisites
 
-Fill in details:
+- Node.js (v14+)  
+- MongoDB (local or hosted)  
+- npm or yarn  
+
+### Installation Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/TechPrepHub.git
+   cd TechPrepHub
+
+
+Install backend and frontend dependencies
+
+
+cd backend
+npm install
+cd ../frontend
+npm install
+
+Run the backend
+cd ../backend
+npm run dev
+
+Run the frontend
+cd ../frontend
+npm run dev
+
+🚀 How to Use
+
+Uploading a Collection
+Sign in or create your account.
+
+Go to the Upload Collection page.
+
+Fill out:
 
 Title
 
@@ -42,24 +89,28 @@ Description
 
 Company Name
 
-Question List (JSON or manual input)
+Question List (upload JSON or type manually)
 
-Visibility (Private/Public)
+Visibility (Private or Public)
 
-Click Submit to upload your collection.
+Submit to share or save your collection.
 
-Browsing & Filtering Collections
+Browsing Collections
+Navigate to Collections.
 
-Go to the Collections page.
+Use the search bar to find collections by keyword.
 
-Use the search bar to find collections by keywords.
+Apply filters by company to narrow results.
 
-Select a company filter to view questions specific to that company.
+Click a collection to explore questions in detail.
 
-Click on a collection to view its details.
+Downloading Collections
+Log in to your account.
 
-Authentication & Downloading
+Click Download on any collection page to save it locally.
 
-Users must log in to download collections.
+🤝 Contributing
+We welcome your ideas, improvements, and bug fixes!
+Feel free to submit issues or pull requests.
 
-Click the Download button on a collection page to save it.
+
