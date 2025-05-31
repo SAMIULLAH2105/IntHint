@@ -57,31 +57,33 @@
    git clone https://github.com/yourusername/TechPrepHub.git
    cd TechPrepHub
 
-
-Install backend and frontend dependencies
-
+Navigate to the backend folder and install packages:
 
 cd backend
 npm install
+
+Then, navigate to the frontend folder and install packages:
+
 cd ../frontend
 npm install
 
-Run the backend
+Run the Backend
+From the backend folder, start the backend server:
 cd ../backend
 npm run dev
 
-Run the frontend
+Run the Frontend
+From the frontend folder, start the frontend server:
 cd ../frontend
 npm run dev
 
 🚀 How to Use
-
 Uploading a Collection
 Sign in or create your account.
 
-Go to the Upload Collection page.
+Navigate to the Upload Collection page.
 
-Fill out:
+Fill out the following details:
 
 Title
 
@@ -89,28 +91,29 @@ Description
 
 Company Name
 
-Question List (upload JSON or type manually)
+Question List (upload JSON file or type manually)
 
-Visibility (Private or Public)
+Visibility (choose between Private or Public)
 
-Submit to share or save your collection.
+Click Submit to share or save your collection.
 
 Browsing Collections
-Navigate to Collections.
+Go to the Collections page.
 
 Use the search bar to find collections by keyword.
 
-Apply filters by company to narrow results.
+Apply filters to view collections by specific companies.
 
-Click a collection to explore questions in detail.
+Click on any collection to explore its questions in detail.
 
 Downloading Collections
 Log in to your account.
 
-Click Download on any collection page to save it locally.
+Click the Download button on the collection page to save it locally.
 
 🤝 Contributing
-We welcome your ideas, improvements, and bug fixes!
-Feel free to submit issues or pull requests.
+We warmly welcome your ideas, improvements, and bug fixes!
+Feel free to submit issues or pull requests to help improve the project.
+
 
 
