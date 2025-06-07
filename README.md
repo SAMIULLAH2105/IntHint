@@ -56,64 +56,85 @@
    ```bash
    git clone https://github.com/yourusername/TechPrepHub.git
    cd TechPrepHub
+---
 
-Navigate to the backend folder and install packages:
+2. **Navigate to the backend folder and install packages:**
 
+```bash
 cd backend
 npm install
 
-Then, navigate to the frontend folder and install packages:
+```
 
+3. **Then, navigate to the frontend folder and install packages:**
+
+```
 cd ../frontend
 npm install
+```
 
-Run the Backend
+4. **Run the Backend**
 From the backend folder, start the backend server:
+```
 cd ../backend
 npm run dev
+```
 
-Run the Frontend
+
+5. **Run the Frontend**
 From the frontend folder, start the frontend server:
+```bash
 cd ../frontend
 npm run dev
+```
+---
+## 🚀 How to Use
+### Uploading a Collection
+* Sign in or create your account.
+* Navigate to the Upload Collection page.
 
-🚀 How to Use
-Uploading a Collection
-Sign in or create your account.
+* Fill out the following details:
+```
+1. Title
 
-Navigate to the Upload Collection page.
+2. Description
 
-Fill out the following details:
+3. Company Name
 
-Title
+4. Question List (upload JSON file or type manually)
 
-Description
+5. Visibility (choose between Private or Public)
 
-Company Name
+6. Click Submit to share or save your collection.
+```
+### Browsing Collections
+* Go to the Collections page.
 
-Question List (upload JSON file or type manually)
+* Use the search bar to find collections by keyword.
 
-Visibility (choose between Private or Public)
+* Apply filters to view collections by specific companies.
 
-Click Submit to share or save your collection.
+* Click on any collection to explore its questions in detail.
 
-Browsing Collections
-Go to the Collections page.
+---
+###  Downloading Collections
+* Log in to your account.
 
-Use the search bar to find collections by keyword.
+* Click the Download button on the collection page to save it locally.
 
-Apply filters to view collections by specific companies.
+---
+## 👥 Contributors
 
-Click on any collection to explore its questions in detail.
+Thanks to the following people for their valuable contributions to this project:
 
-Downloading Collections
-Log in to your account.
+- [Samiullah](https://github.com/SAMIULLAH2105) – Lead Developer / Full Stack Engineer  
+- [Muhammad Ali Arsalan](https://github.com/MuhammadAliArsalan) – Backend Developer  
+- [Anas Khan Muhammad](https://github.com/anaskhanmuhammad) – Frontend Developer 
 
-Click the Download button on the collection page to save it locally.
+Feel free to check out their GitHub profiles and explore their work!
 
-🤝 Contributing
-We warmly welcome your ideas, improvements, and bug fixes!
-Feel free to submit issues or pull requests to help improve the project.
+
+
 
 
 
