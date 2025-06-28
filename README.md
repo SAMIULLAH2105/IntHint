@@ -127,8 +127,8 @@ npm run dev
 
 Thanks to the following people for their valuable contributions to this project:
 
-- [Samiullah](https://github.com/SAMIULLAH2105) – Lead Developer / Full Stack Engineer  
-- [Muhammad Ali Arsalan](https://github.com/MuhammadAliArsalan) – Backend Developer  
+- [Samiullah](https://github.com/SAMIULLAH2105) – Lead Developer / Full Stack  
+- [Muhammad Ali Arsalan](https://github.com/MuhammadAliArsalan) – FullStack Developer  
 - [Anas Khan Muhammad](https://github.com/anaskhanmuhammad) – Frontend Developer 
 
 Feel free to check out their GitHub profiles and explore their work!
